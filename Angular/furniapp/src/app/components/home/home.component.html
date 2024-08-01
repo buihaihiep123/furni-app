@@ -1,0 +1,72 @@
+<!-- Start Hero Section -->
+<div class="hero">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-lg-5">
+          <div class="intro-excerpt">
+            <h1>Furni, thiết kế<span clsas="d-block"> không gian sống của bạn !!</span></h1>
+            <p class="mb-4">Mua sắm những sản phẩm nội thất với giá siêu hời tại Furni.</p>
+            <p><a [routerLink]="['/shop']" class="btn btn-secondary me-2">Mua sắm</a><a  [routerLink]="['/signup']" class="btn btn-white-outline">Đăng ký</a></p>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="hero-img-wrap">
+            <img src="assets/images/couch.png" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- End Hero Section -->
+
+<!-- Start Product Section -->
+<div class="product-section">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-5">
+        <input type="text" class="form-control" [(ngModel)]="search" placeholder="Tìm kiếm sản phẩm">
+      </div>
+      <div class="col-md-2 fa-pull-right">
+        <button class="btn btn-primary w-100" (click)="onSearch()">Tìm kiếm</button>
+      </div>
+    </div>
+    <div *ngIf="products.length" class="row">
+
+      <!-- Start Column 1 -->
+      <!-- <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
+        <h2 class="mb-4 section-title">Crafted with excellent material.</h2>
+        <p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. </p>
+        <p><a href="shop.html" class="btn">Explore</a></p>
+      </div>  -->
+      <!-- End Column 1 -->
+
+      <!-- Start Column 2 -->
+      <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0 "*ngFor="let product of products | paginate: { itemsPerPage: 8, currentPage: p }" >
+        <a class="product-item" [routerLink]="['/product', product.product_id]">
+          <img [src]="product.image" class="img-fluid product-thumbnail">
+          <h3 class="product-title">{{ product.product_name }}</h3>
+          <strong class="product-price">{{product.price| currency:'VND':''}}₫</strong>
+
+          <span class="icon-cross">
+            <img src="assets/images/cross.svg" class="img-fluid"> 
+          </span>
+         
+        </a>
+      </div> 
+      <!-- End Column 2 -->
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+    
+    <div *ngIf="!products.length" class="alert alert-warning">
+      Không có sản phẩm nào.
+    </div>
+  </div>
+</div>
+<!-- End Product Section -->
+

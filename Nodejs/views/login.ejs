@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>AdminLTE 2 | Log in</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"
+    />
+    <!-- Ionicons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"
+    />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css" />
+    <!-- iCheck -->
+    <link rel="stylesheet" href="../../plugins/iCheck/square/blue.css" />
+  </head>
+  <body class="hold-transition login-page" style="position: relative;">
+    <div class="login-box" style="position: relative;">
+      <div class="login-logo">
+        <a href="" style="color: black"><b>Admin</b>FUR</a>
+      </div>
+      <!-- /.login-logo -->
+      <div class="login-box-body">
+        <p class="login-box-msg">Đăng nhập trang quản trị</p>
+        <% if(err_msg) {%>
+        <div class="alert alert-danger">
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-hidden="true"
+          >
+            &times;
+          </button>
+          <strong>Chú ý!</strong> <%= err_msg%>
+        </div>
+        <%}%>
+        <form action="" method="post">
+          <div class="form-group has-feedback">
+            <input
+              type="email"
+              name="email"
+              class="form-control"
+              placeholder="Email"
+            />
+            <span
+              class="glyphicon glyphicon-envelope form-control-feedback"
+            ></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input
+              type="password"
+              name="password"
+              class="form-control"
+              placeholder="Password"
+            />
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="row">
+            
+            <!-- /.col -->
+            <div class="col-xs-4 pull-left">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">
+                Sign In
+              </button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+      </div>
+      <!-- /.login-box-body -->
+      <div
+      class="pull-right"
+      style="
+          position: absolute;
+          z-index: 1;
+          top: 130px;
+          left: 270px;
+      "
+    >
+      <img src="../uploads/sofa.png" />
+    </div>
+    
+    </div>
+    <div
+      class="pull-left"
+      style="
+          position: absolute;
+          z-index: -1;
+          top: 30px;  
+          left: 120px;   
+      "
+    >
+      <img src="../uploads/why-choose-us-img.jpg" style=" width: 127px;
+      height: 127px;border-radius: 50%;"/>
+    </div>
+    <div
+      class="pull-left"
+      style="
+          position: absolute;
+          z-index: -1;
+          top: 257px;
+          left: 230px;   
+      "
+    >
+      <img src="../uploads/img-grid-2.jpg" style=" width:80px;
+      height: 80px;border-radius: 50%;"/>
+    </div>
+    <div
+      class="pull-left"
+      style="
+          position: absolute;
+          z-index: -1;
+          top: 350px;
+          left: 320px;   
+      "
+    >
+      <img src="../uploads/img-grid-1.jpg" style=" width: 110px;
+      height: 110px;border-radius: 50%;"/>
+    </div>
+    <div
+      class="pull-left"
+      style="
+          position: absolute;
+          z-index: -2;
+          top: 115px;
+          left: 245px;    
+      "
+    >
+      <img src="../uploads/post-1.jpg" style=" width: 137px;
+      height: 137px;border-radius: 50%;"/>
+    </div>
+    <div
+      class="pull-left"
+      style="
+          position: absolute;
+          z-index: -2;
+          top: 0px;
+          left: 355px;   
+      "
+    >
+      <img src="../uploads/post-2.jpg" style=" width: 100px;
+      height: 100px;border-radius: 50%;"/>
+    </div>
+    <div
+      class="pull-left"
+      style="
+          position: absolute;
+          z-index: -2;
+          top: 195px;
+          left: 50px;   
+      "
+    >
+      <img src="../uploads/img-grid-3.jpg" style=" width: 170px;
+      height: 170px;border-radius: 50%;"/>
+    </div>
+  </body>
+</html>

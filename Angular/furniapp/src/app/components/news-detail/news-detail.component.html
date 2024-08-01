@@ -1,0 +1,14 @@
+<div class="container mt-5" *ngIf="newsDetail">
+  <div class="row">
+      <div class="col-md-8 offset-md-2">
+          <div class="card">
+              <img [src]="'http://localhost:3000/uploads/' + newsDetail.image" class="card-img-top" alt="Image">
+              <div class="card-body">
+                  <h1 class="card-title">{{ newsDetail.title }}</h1>
+                  <p class="card-text" [innerHTML]="newsDetail.content"></p>
+                  <p class="text-muted">Uploaded on: {{ formatDate(newsDetail.upload_date) }}</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

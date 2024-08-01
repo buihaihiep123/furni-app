@@ -1,0 +1,21 @@
+<div *ngIf="user" class="container">
+
+  <div class="card"> 
+    <div class="card-header">
+      <h2>{{ user.account_name }}</h2>
+    </div>
+    <div class="card-body">
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Số điện thoại:</strong> {{ user.phone_number }}</p>
+      <p><strong>Địa chỉ:</strong> {{ user.address }}</p>
+      <div class="border p-2 mt-3 rounded" role="alert">
+        Hãy <a routerLink="/change-password">Nhấp chuột</a> nếu bạn muốn đổi mật khẩu của bạn!
+      </div>
+      <div class="d-flex mt-3">
+        <a [routerLink]="['/']" class="btn btn-primary" >Trang chủ</a>
+        <a class="btn btn-warning mx-3" [routerLink]="['/user-update/', user.account_id]">Cập nhật</a>
+      </div>
+      
+    </div>
+  </div>
+</div>

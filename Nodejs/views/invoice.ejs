@@ -1,0 +1,26 @@
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+</head>
+<body>
+    <h1>Hóa đơn</h1>
+    <p>Customer: <%= accountName %></p>
+    <h2>Chi tiết hóa đơn</h2>
+    <ul>
+        <% products.forEach(product => { %>
+            <li>
+                <p>Tên khách hàng: <%= product.product_name %></p>
+                <p>Số lượng: <%= product.quantity %></p>
+                <p>Đơn giá: <%= product.price %></p>
+                <p>Tổng: <%= product.subtotal %></p>
+            </li>
+        <% }); %>
+    </ul>
+    <p>Tổng cộng: <%= totalAmount %></p>
+    <p>Phương thức thanh  toán: <%= paymentMethod %></p>
+</body>
+</html>

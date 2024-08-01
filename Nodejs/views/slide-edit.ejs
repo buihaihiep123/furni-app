@@ -1,0 +1,84 @@
+<%- include('header')%> <%- include('aside')%>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Advanced Form Elements
+      <small>Preview</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li>
+        <a href="#"><i class="fa fa-dashboard"></i> Home</a>
+      </li>
+      <li><a href="#">Forms</a></li>
+      <li class="active">Advanced Elements</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-6">
+        <form
+          action="/slide-edit/<%= sli.slide_id %>"
+          method="post"
+          enctype="multipart/form-data"
+          role="form"
+          class="box box-info"
+        >
+        <input type="hidden" value="<%= sli.image %>" name="image">
+          <div class="box-header">
+            <h3 class="box-title">
+              <i class="fa fa-gear"></i> Sửa thông tin 
+            </h3>
+          </div>
+          <div class="box-body">
+            <!-- Color Picker -->
+            <div class="form-group">
+              <label>Ảnh sản phẩm:</label>
+              <input
+                type="file"
+                onchange="showImage(this)"
+                name="image"
+                class="form-control my-colorpicker1"
+              />
+            </div>
+            <div class="form-group">
+              <label>Mô tả:</label>
+              <input
+                type="text"
+                name="description"
+                value="<%= sli.description %>"
+                class="form-control my-colorpicker1"
+              />
+            </div>
+            
+            <div>
+              <a
+                href="/slide"
+                class="btn btn-primary active"
+                aria-current="page"
+                ><i class="fa fa-arrow-left"></i> Quay lại</a
+              >
+              <button class="btn btn-primary" type="submit">
+                <i class="fa fa-save"></i> Lưu
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <a href="" class="thumbnail">
+          <img id="furni-image" alt="" src="uploads/<%= sli.image  %>"/>
+        </a>
+      </div>
+
+      <!-- /.col (right) -->
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
+</div>
+
+<%- include('footer')%>
+

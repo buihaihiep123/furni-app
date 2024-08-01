@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header nav ul {
+    padding-left: 0;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.product-detail img {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.product-info h2 {
+    font-size: 2em;
+    margin-top: 0;
+}
+
+.product-info .old-price {
+    font-size: 1.2em;
+}
+
+.product-info .price {
+    font-size: 1.5em;
+}
+
+.product-info .status {
+    font-size: 1.2em;
+    margin-left: auto;
+}
+
+.purchase-form .form-label {
+    font-weight: bold;
+}
+
+.product-description {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+footer p {
+    margin: 0;
+}
+
+.btn-outline-danger {
+    display: inline-flex;
+    align-items: center;
+}

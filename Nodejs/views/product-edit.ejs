@@ -1,0 +1,142 @@
+<%- include('header')%> <%- include('aside')%>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Advanced Form Elements
+      <small>Preview</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li>
+        <a href="#"><i class="fa fa-dashboard"></i> Home</a>
+      </li>
+      <li><a href="#">Forms</a></li>
+      <li class="active">Advanced Elements</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-6">
+        <form
+          action="/product-edit/<%= pro.product_id %>"
+          method="post"
+          enctype="multipart/form-data"
+          role="form"
+          class="box box-info"
+        >
+        <input type="hidden" value="<%= pro.image %>" name="image">
+          <div class="box-header">
+            <h3 class="box-title">
+              <i class="fa fa-gear"></i> Sửa thông tin sản phẩm
+            </h3>
+          </div>
+          <div class="box-body">
+            <!-- Color Picker -->
+            <div class="form-group">
+              <label>Loại sản phẩm:</label>
+              <select name="category_id" class="form-control" id="">
+                <option value="">Chọn loại sản phẩm</option>
+                <% cats.map((cat)=>{%>
+                <option value="<%= cat.category_id %>" <%= cat.category_id == pro.category_id ? 'selected': ''%> >
+                  <%= cat.category_name %>
+                </option>
+                <%})%>
+              </select>
+            </div>
+            <div class="form-group">    
+              <label>Nhà cung cấp:</label>
+              <select name="provider_id" class="form-control" id="">
+                <option value="">Chọn nhà cung cấp</option>
+                <% prov.map((cat)=>{%>
+                <option value="<%= cat.provider_id %>" <%= cat.provider_id == pro.provider_id ? 'selected': ''%> >
+                  <%= cat.provider_name %>
+                </option>
+                <%})%>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Ảnh sản phẩm:</label>
+              <input
+                type="file"
+                onchange="showImage(this)"
+                name="image"
+                class="form-control my-colorpicker1"
+              />
+            </div>
+            <div class="form-group">
+              <label>Tên sản phẩm:</label>
+              <input
+                type="text"
+                name="product_name"
+                value="<%= pro.product_name%>"
+                class="form-control my-colorpicker1"
+              />
+            </div>
+            <div class="form-group">
+              <label>Giá cũ:</label>
+              <input
+                type="text"
+                name="old_price"
+                value="<%= pro.old_price %>"
+                class="form-control my-colorpicker1"
+              />
+            </div>
+            <div class="form-group">
+              <label>Giá khuyến mại:</label>
+              <input
+                type="text"
+                name="price"
+                value="<%= pro.price %>"
+                class="form-control my-colorpicker1"
+              />
+            </div>
+            <div class="form-group">
+              <div class="form-group">
+                <label>Mô tả:</label>
+                <textarea class="form-control " name="description" id="editor" value="<%= pro.description %>" rows="3" placeholder="Enter ..." ><%- pro.description %></textarea>
+              </div>
+              
+            </div>
+            <div class="form-group">
+              <label>trạng thái:</label>
+
+              <div class="input-group my-colorpicker2">
+                <label>
+                  <input type="radio" class="minimal" name="status" value="0" <%= pro.status==0 ? 'checked' : ''%> /> Tạm
+                  ẩn </label
+                ><br />
+                <label>
+                  <input type="radio" name="status" value="1" class="minimal"  <%= pro.status==1 ? 'checked' : ''%>/> Hiển thị
+                </label>
+              </div>
+              <!-- /.input group -->
+            </div>
+            <div>
+              <a
+                href="/product"
+                class="btn btn-primary active"
+                aria-current="page"
+                ><i class="fa fa-arrow-left"></i> Quay lại</a
+              >
+              <button class="btn btn-primary" type="submit">
+                <i class="fa fa-save"></i> Lưu
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <a href="" class="thumbnail">
+          <img id="furni-image" alt="" src="uploads/<%= pro.image %>"/>
+        </a>
+      </div>
+      <!-- /.col (right) -->
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
+</div>
+<script> CKEDITOR.replace('editor');</script>
+<%- include('footer')%>

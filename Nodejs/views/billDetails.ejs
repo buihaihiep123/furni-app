@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chi tiết hóa đơn</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+        p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f1f1f1;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .product-name {
+            font-weight: bold;
+            color: #333;
+        }
+        .product-details {
+            margin-left: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thông tin hóa đơn</h1>
+        <p><strong>Mã hóa đơn:</strong> <%= bill.bill_id %></p>
+        <p><strong>Tên người dùng:</strong> <%= bill.account_name %></p>
+        <p><strong>Email:</strong> <%= bill.email %></p>
+        <p><strong>Số điện thoại:</strong> <%= bill.phone_number %></p>
+        <p><strong>Địa chỉ:</strong> <%= bill.address %></p>
+        <p><strong>Ngày đặt:</strong> <%= bill.bill_date.toLocaleString()  %></p>
+        <p><strong>Tổng tiền:</strong> <%= bill.total_amount %></p>
+        <p><strong>Phương thức thanh toán:</strong> <%= bill.payment_method %></p>
+        <p><strong>Trạng thái:</strong> <%= bill.status === 0 ? 'Đã xác nhận' : 'Chưa xác nhận' %></p>
+
+
+        <h2>Chi tiết sản phẩm</h2>
+        <ul>
+            <% billDetails.forEach(function(detail) { %>
+                <li>
+                    <p class="product-name">Tên sản phẩm: <%= detail.product_name %></p>
+                    <div class="product-details">
+                        <p>Số lượng: <%= detail.quantity %></p>
+                        <p>Giá: <%= detail.price %></p>
+                        <p>Tổng cộng: <%= detail.subtotal %></p>
+                    </div>
+                </li>
+            <% }); %>
+        </ul>
+        
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,71 @@
+	<!-- Start Hero Section -->
+    <div class="hero">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-5">
+                    <div class="intro-excerpt">
+                        <h1>Shop</h1>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="row mt-4" *ngIf="categories && categories.length > 0">
+                        <div class="col-md-3" *ngFor="let category of categories">
+                          <div class="card mb-3">
+                            <div class="card-body">
+                              <p class="card-text"><a [routerLink]="['/products/category/', category.category_id]" routerLinkActive="active" >{{ category.category_name }}</a></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- End Hero Section -->
+
+<div class="container">
+  <div class="row justify-content-center mb-3 mt-4">
+    <div class="col-md-6">
+      <input type="text" class="form-control" [(ngModel)]="search" placeholder="Tìm kiếm sản phẩm">
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-primary w-100" (click)="onSearch()">Tìm kiếm</button>
+    </div>
+  </div>
+</div>
+
+<div class="untree_co-section product-section before-footer-section">
+    <div class="container">
+          <div *ngIf="products.length" class="row">
+
+              <!-- Start Column 1 -->
+            <div *ngFor="let product of products| paginate: { itemsPerPage: 8, currentPage: q }" class="col-12 col-md-4 col-lg-3 mb-5">
+                <a class="product-item"[routerLink]="['/product/', product.product_id]">
+                    <img [src]="'http://localhost:3000'+'/uploads/' +product.image" class="img-fluid product-thumbnail">
+                    <h3 class="product-title">{{product.product_name}}</h3>
+                    <strong class="product-price">{{product.price| currency:'VND':''}}₫</strong>
+
+                    <button class="icon-cross" type="submit" (click)="addToCart(detailproduct)">
+                        <img src="assets/images/cross.svg" class="img-fluid">
+                    </button>
+                </a>
+            </div> 
+
+          </div>
+          
+          
+          <div *ngIf="!products.length" class="alert alert-warning">
+            Không có sản phẩm nào.
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 d-flex justify-content-center">
+                <pagination-controls (pageChange)="q = $event"></pagination-controls>
+              </div>
+            </div>
+          </div>
+          
+    </div>
+    
+</div>
+

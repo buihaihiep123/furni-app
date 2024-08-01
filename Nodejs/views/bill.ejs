@@ -1,0 +1,134 @@
+<%- include('header') %> 
+<%- include('aside') %>
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      Simple Tables
+      <small>preview of simple tables</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li>
+        <a href="#"><i class="fa fa-dashboard"></i> Home</a>
+      </li>
+      <li><a href="#">Tables</a></li>
+      <li class="active">Simple</li>
+    </ol>
+  </section>
+
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">
+              <i class="fa fa-th"></i> Quản lý hóa đơn
+            </h3>
+            <div class="box-tools">
+              <form action="" method="get" role="form">
+                <div class="input-group input-group-sm" style="width: 250px">
+                  <input type="text" name="name" class="form-control pull-right" placeholder="Search"/>
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default">
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>TT</th>
+                  <th>Mã hóa đơn</th>
+                  <th>Tên khách hàng</th>
+                  <th>Ngày mua</th>
+                  <th>Tổng thanh toán</th>
+                  <th>Trạng thái</th>
+                  <th>Phương thức thanh toán</th>
+                  <th>Chức năng</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (data && data.length > 0) { %> 
+                <% data.map(function(bill, index) { %>
+                <tr>
+                  <td><%= index + 1 %></td>
+                  <td><%= bill.bill_id %></td>
+                  <td><%= bill.account_name %></td>
+                  <td><%= bill.formatted_bill_date %></td>
+                  <td><%= bill.total_amount %></td>
+                  <td class="bill-status" data-id="<%= bill.bill_id %>">
+                    <%= bill.status == 0 ? 'đã xác nhận' : 'chưa xác nhận' %>
+                  </td>
+                  <td><%= bill.payment_method %></td>             
+                  <td>
+                    <a href="/bill/<%= bill.bill_id %>" class="btn btn-success fa fa-eye"></a>
+                    <a class="btn btn-warning fa fa-edit"></a>
+                  </td>
+                </tr>
+                <% }) %> 
+                <% } else { %>
+                <tr>
+                  <td colspan="8">Không có dữ liệu.</td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="box-footer clearfix">
+        <ul class="pagination pagination-sm no-margin pull-right">
+          <li><a href="/bill/?page=<%= _page > 1 ? _page - 1 : 1 %>">&laquo;</a></li>
+          <% for(i=1; i<= totalPage; i++) { %> 
+          <% if(_name) { %>
+          <li class="<%= _page == i ? 'active' : '' %>">
+            <a href="/bill/?page=<%= i %>&name=<%= _name %>"><%= i %></a>
+          </li>
+          <% } else { %>
+          <li class="<%= _page == i ? 'active' : '' %>">
+            <a href="/bill/?page=<%= i %>"><%= i %></a>
+          </li>
+          <% } %> 
+          <% } %>
+          <li><a href="/bill/?page=<%= _page < totalPage ? _page + 1 : totalPage %>">&raquo;</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<%- include('footer') %>
+
+<script>
+  document.querySelectorAll('.bill-status').forEach(function(statusCell) {
+    statusCell.addEventListener('click', function() {
+      const billId = this.getAttribute('data-id');
+      const currentStatus = this.textContent.trim() === 'đã xác nhận' ? 0 : 1;
+
+      // Kiểm tra nếu trạng thái hiện tại là 'đã xác nhận' thì không thực hiện gì thêm
+      if (currentStatus === 0) {
+        return;
+      }
+
+      const newStatus = currentStatus === 0 ? 1 : 0;
+      fetch(`/bill/${billId}/status`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status: newStatus })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message) {
+          this.textContent = newStatus === 0 ? 'đã xác nhận' : 'chưa xác nhận';
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+  });
+</script>

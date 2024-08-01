@@ -1,0 +1,34 @@
+<div *ngIf="user" class="container">
+    <div class="card">
+      <div class="card-header">
+        <h2>Cập nhật thông tin: {{ user.account_name }}</h2>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="account_name">Tên tài khoản</label>
+            <input id="account_name" formControlName="account_name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="email">email</label>
+            <input id="email" formControlName="email" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="phone_number">Số điện thoại</label>
+            <input id="phone_number" formControlName="phone_number" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="address">Địa chỉ</label>
+            <input id="address" formControlName="address" class="form-control">
+          </div>
+          <div class="border p-2 mt-3 mb-4 rounded" role="alert">
+            Hãy <a routerLink="/change-password">Nhấp chuột</a> nếu bạn muốn đổi mật khẩu của bạn!
+          </div>
+          <button type="submit" class="btn btn-primary">Cập nhật</button>
+          <button type="button" class="btn btn-secondary" (click)="onCancel()">Hủy</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,34 @@
+		<!-- Start Blog Section -->
+        <div class="blog-section py-5">
+            <div class="container">
+              <div class="row" *ngIf="news.length > 0">
+                <div class="col-12 col-sm-6 col-md-4 mb-4" *ngFor="let item of news| paginate: { itemsPerPage: 6, currentPage: q }">
+                  <div class="card h-100 shadow-sm">
+                    <a  [routerLink]="['/newsdetail', item.new_id]" class="post-thumbnail">
+                      <img [src]="'http://localhost:3000/uploads/' + item.image" class="card-img-top" alt="Image">
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title"><a [routerLink]="['/newsdetail', item.new_id]">{{ item.title }}</a></h5>
+                      <p class="card-text">Đăng bởi <a href="#">furni</a> ngày {{ formatDate(item.upload_date) }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+			  <div class="container">
+				<div class="row">
+				  <div class="col-md-12 d-flex justify-content-center">
+					<pagination-controls (pageChange)="q = $event"></pagination-controls>
+				  </div>
+				</div>
+			  </div>
+			  
+			  <div *ngIf="!news.length" class="alert alert-warning">
+				Không có tin tức nào nào.
+			  </div>
+            </div>
+          </div>
+          
+          
+		<!-- End Blog Section -->	
+
+		
